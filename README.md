@@ -25,7 +25,7 @@ $$\text{Faculty (Khoa)} \longrightarrow \text{Major (Ngành)} \longrightarrow \t
 ---
 
 ### 2.Vai Trò Giảng Viên (Teacher / Instructor)
-* **Teacher Dashboard (`Dashboard_2.jsx`):** 
+* **Teacher Dashboard (`Dashboard.jsx`):** 
   * Quản lý các Ngành học được phân công chuyên môn.
   * Theo dõi tiến độ phê duyệt tài liệu/bài học gần đây (Approved, Pending, Rejected).
   * Xem danh mục tài liệu toàn trường ở chế độ Read-Only để tham khảo peer-review.
@@ -45,7 +45,7 @@ $$\text{Faculty (Khoa)} \longrightarrow \text{Major (Ngành)} \longrightarrow \t
 ---
 
 ### 3.Vai Trò Quản Trị Viên (Administrator)
-* **Thống Kê Tổng Quan Hệ Thống (`Dashboard_3.jsx`):**
+* **Thống Kê Tổng Quan Hệ Thống (`Dashboard.jsx`):**
   * Phân tích số liệu tài khoản (Student / Teacher / Admin).
   * Thống kê dung lượng lưu trữ trên đám mây AWS S3 (MB/GB, tổng tệp).
   * Theo dõi hàng chờ kiểm duyệt, báo cáo vi phạm, phân bổ loại tài liệu và chỉ số hoàn thành bài test.
