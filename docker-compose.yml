@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: lms_redis
+    restart: always
+
+  web:
+    build: ./backend
+    container_name: lms_web
+    command: gunicorn --bind 0.0.0.0:8000 --access-logfile=- --workers 4 --timeout 120 config.wsgi:application
+    env_file: .env
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+      - private_media_volume:/app/private_media
+    depends_on:
+      - redis
+    restart: always
+
+  celery_worker:
+    build: ./backend
+    container_name: lms_celery
+    command: celery -A config worker -l info
+    env_file: .env
+    volumes:
+      - media_volume:/app/media
+      - private_media_volume:/app/private_media
+    depends_on:
+      - redis
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: https://${DOMAIN_NAME}/api
+    container_name: lms_frontend
+    ports:
+      - "127.0.0.1:8080:80"
+    restart: always
+
+volumes:
+  static_volume:
+  media_volume:
+  private_media_volume:
